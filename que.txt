@@ -1,0 +1,47 @@
+hi there 1
+hey 1
+hi 1 
+hello 1
+hello how are you 1
+what is your name 2
+who are you 2
+you are who 2
+my name is 2
+how old are you 3
+what is your age 3 
+are you getting older 3
+what about your age 3
+Where do you live 4
+I live in 4
+your resident 4
+good morning 5
+it's morning 5
+morning 5
+good evening 6
+it's evening 6
+evening 6
+good night 7
+night 7
+sweet dreams 7
+let's sleep 7
+weather report 8
+give me weather report for today 8
+tell me today's weather report 8
+What can you do 9
+how can you help me 9
+help 9
+bye 10
+goodbye 10
+exit 10
+I am fine thanks 11
+I am fine 11
+fine 11
+thanks 12
+thank you 12
+send pic 13
+what city are you from 13
+how is it going 14
+whats's up 15
+What are your interests 16
+What are your favorite subjects 17
+What is your favorite number 18
