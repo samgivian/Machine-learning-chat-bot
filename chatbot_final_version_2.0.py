@@ -22,8 +22,15 @@ from telegram.ext import Updater, InlineQueryHandler, CommandHandler
 import requests
 import re
 from bs4 import BeautifulSoup
-# %1 comes after the word remove it from the string and check for the synonmum
+from PyDictionary import PyDictionary
+import wikipedia
 
+# %1 comes after the word remove it from the string and check for the synonmum
+dictionary=PyDictionary("fast")
+print(dictionary.printMeanings()) 
+print(dictionary.getMeanings()) 
+print (dictionary.getSynonyms())
+print (dictionary.translate("Hello",'fa'))
 
 chatbot = ChatBot(
     'Terminal',
@@ -97,28 +104,6 @@ classifier = GaussianNB()
 classifier.fit(questions_array, labels)
 
 
-def wiki(url):
-    response = requests.get(
-		url=url,
-    )
-	
-    soup = BeautifulSoup(response.content, 'html.parser')
-
-    title = soup.find(id="firstHeading")
-    print(title.text)
-
-    allLinks = soup.find(id="bodyContent").find_all("a")
-    random.shuffle(allLinks)
-    linkToScrape = 0
-
-    for link in allLinks:
-	    # We are only interested in other wiki articles
-	    if link['href'].find("/wiki/") == -1: 
-		    continue
-
-	    # Use this link to scrape
-	    linkToScrape = link
-	    break
 
 #getting emojies
 
@@ -178,10 +163,21 @@ def handler(bot, update):
         elif(final_response in emoji_array):
             bot.send_message(chat_id=chat_id, text=emojize(':'+final_response.split(" ")[0]+':', use_aliases=True))
 
-        else:
+        elif(final_response == "dog pic"):
             url = get_image_url()
             chat_id = update.message.chat_id
             bot.send_photo(chat_id=chat_id, photo=url)
+
+        elif(final_response=="wiki"):
+            word_to_search=""
+            for m in range(1,len(u)):
+                word_to_search=word_to_search+u[m]
+          
+            print(word_to_search)
+            result = wikipedia.summary(word_to_search, sentences=2)
+            bot.send_message(chat_id=chat_id, text=str(result))
+            
+        else:
             bot.send_message(chat_id=chat_id, text=str(final_response))
     else:
         bot.send_message(chat_id=chat_id, text=str(final_response))
