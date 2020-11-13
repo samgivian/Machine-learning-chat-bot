@@ -1,0 +1,28 @@
+ else:
+            response_list=str(final_response).split(" ")
+            if(len(response_list)>0):
+                for r in range(0,len(response_list)):
+                    if(response_list[r]=="%1"):
+                        synonyms = []
+                        input_word=response_list[r-1]
+                        for syn in wordnet.synsets(input_word): 
+                            for l in syn.lemmas(): 
+                                try:
+                                    w1 = wordnet.synset(input_word+".n.01")
+                                    w2 = wordnet.synset(l.name()+".n.01")
+                                    if(w1.wup_similarity(w2)==1):
+                                        synonyms.append(l.name())
+                                #  print("An exception occurred")
+                                except:
+                                    continue
+                           
+                            if l.antonyms(): 
+                                antonyms.append(l.antonyms()[0].name())
+                        rand=random.randint(0,len(synonyms)-1)
+                        randomword= synonyms[rand]
+                        response_list[r-1]=randomword
+                        response_list[r]=""
+                        final_response=""
+                        for m in response_list:
+                            final_response=final_response+m+" "
+                        break

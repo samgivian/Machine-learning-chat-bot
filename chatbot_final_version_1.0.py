@@ -1,6 +1,6 @@
 from telegram.ext import Updater, MessageHandler, Filters
 from emoji import emojize
-updater = Updater(token='#Enter your token here')
+updater = Updater(token='1186645757:AAHDQjRlzdw06wHxc-slGbtXdVMTOVUn8yo')
 dispatcher = updater.dispatcher
 updater.start_polling()
 import json
@@ -26,9 +26,9 @@ chatbot = ChatBot(
         {
             'import_path': 'chatterbot.logic.BestMatch',
             'default_response': 'a',
-            'maximum_similarity_threshold': 0.80
+            'maximum_similarity_threshold': 0.95
         },
-        'chatterbot.logic.MathematicalEvaluation',
+        'chatterbot.logic.MathematicalEvaluation'
     ]
 )
 labels = []
@@ -80,6 +80,10 @@ def handler(bot, update):
     final_response=second_algorithm(text)
   else:
     final_response=response_message
+  if(final_response=="my pic"):
+    bot.send_photo(chat_id=chat_id, photo=open('chatbotpic.jpg', 'rb'))
+  elif(final_response=="heart emoji"):
+    bot.send_message(chat_id=chat_id, text=emojize(':heart_eyes:', use_aliases=True))
   response_list=str(final_response).split(" ")
   if(len(response_list)>0):
     for r in range(0,len(response_list)):
@@ -107,19 +111,6 @@ def handler(bot, update):
           final_response=final_response+m+" "
         break
   bot.send_message(chat_id=chat_id, text=str(final_response))
-  
-
-  
-#  if '모해' in text:
-  #  bot.send_message(chat_id=chat_id, text='오빠 생각 ㅎㅎ')
- # elif '아잉' in text:
- #   bot.send_message(chat_id=chat_id, text=emojize('아잉:heart_eyes:', use_aliases=True))
- # elif '몇시에' in text:
- #   bot.send_message(chat_id=chat_id, text='7시에 보자')
-#  elif '사진' in text:
- #   bot.send_photo(chat_id=chat_id, photo=open('img/mj.jpg', 'rb'))
- # else:
- #   bot.send_message(chat_id=chat_id, text='몰라')
 
 echo_handler = MessageHandler(Filters.text, handler)
 dispatcher.add_handler(echo_handler)

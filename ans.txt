@@ -1,5 +1,5 @@
 Hi there, how are you !?,hi,hello,hey,hullo
-My name is etcetera, but you can call me etc.,
+My name is lisa but you can call me lis,
 I'm 22 years old
 I live inside a lab !
 Good morning! Have a nice day!
@@ -16,3 +16,6 @@ okay,ok,not much,The sky's up but I'm fine thanks. What about you?
 I am interested in all kinds of things. We can talk about anything!
 My favorite subjects is robotics.,I am interested in a wide variety of topic.
 I find I'm quite fond of the number 42.
+my pic
+good,bad,great,awesome,terrible
+what do you mean
